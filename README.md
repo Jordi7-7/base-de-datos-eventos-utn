@@ -18,8 +18,8 @@ acomodar el módulo de *Eventos*, manteniendo compatibilidad institucional.
 utn-eventos-sql-repo/
 ├─ README.md
 ├─ assets/
-│  └─ diagrama-eventos.png        # Diagrama/imagen de referencia (subir por el autor)
-└─ sql/
+│  └─ diagrama-relacional-eventos.png        # Diagrama/imagen de referencia (subir por el autor)
+└─ scripts/
    ├─ 01_schema_objects.sql       # Tablas nuevas, FKs, inserts de roles y alters
    └─ 02_triggers.sql             # Triggers (autoinscripción / QR)
 ```
@@ -66,18 +66,6 @@ utn-eventos-sql-repo/
 
 ---
 
-## Observaciones conocidas (sin modificar los scripts originales)
-
-- `UEP_TAB_ACTIVIDAD_ASISTENCIA`: hay una **coma doble** tras `ASISTENCIA_REGISTRADA ...`, lo que puede fallar en compilación.  
-- `trg_autoinscripcion_nueva_act`: el script usa `CCREATE` (posible **typo** de `CREATE`).  
-- Dependencias: se **asume** la existencia de columnas como `PAGADO` y `CODIGO_QR` en `UEP_TAB_EVENTOS_INSCRIPCIONES` y de las tablas referenciadas (`UEP_TAB_EVENTOS`, `SEG_TAB_ROLES`, `INS_TAB_USUARIOS`).  
-- Los roles incluyen **`ADMINISTRADOR_EVENTOS`** dos veces (insert duplicado).  
-- No hay *drops* ni comprobaciones `IF NOT EXISTS`; ejecutar en **esquema limpio** o ajustar manualmente antes de producción.
-
-> Estas observaciones NO se corrigen aquí por pedido del autor. Registrar issues/PRs si se desea abordar.
-
----
-
 ## Contexto de adaptación (BDD UTN)
 
 Este trabajo **adapta** la base de datos **institucional existente**. Se **reutilizan** entidades
@@ -88,15 +76,6 @@ El **diagrama** en `assets/diagrama-eventos.png` ilustra **qué se reutiliza** y
   amplía atributos (p. ej., `CODIGO_QR`).  
 - Los **triggers** sincronizan inscripciones de actividades y asignan/generan códigos QR coherentes
   con el flujo definido en el **Manual de Usuario**.
-
----
-
-## Cómo contribuir
-
-1. Crear rama `feature/ajuste-xxxx`.
-2. Proponer cambios al **SQL** (objetos o triggers) en **commits atómicos**.
-3. Actualizar el **README** y el **diagrama** si hay cambios de modelo.
-4. PR con descripción técnica + *script de migración* si aplica.
 
 ---
 
