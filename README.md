@@ -5,10 +5,13 @@ Este repositorio contiene los **scripts SQL** del módulo **Gestión de Eventos*
 las entidades ya disponibles y **agregar** las tablas/relaciones/roles necesarios para
 acomodar el módulo de *Eventos*, manteniendo compatibilidad institucional.
 
-> **Importante**: No se modificó el contenido de los scripts provistos por el autor.
-> Únicamente se **organizó** en dos archivos: uno de **objetos** y otro de **triggers**.
-> Cualquier corrección de sintaxis o ajuste funcional **deberá** hacerse en *commits*
-> posteriores (ver sección *Observaciones conocidas*).
+---
+
+## 📌 Diagrama y vista interactiva
+
+![Diagrama relacional](assets/diagrama-relacional-eventos.png)
+
+- Diagrama interactivo: **dbdiagram.io** → https://dbdiagram.io/d/68dc423dd2b621e422ab1ba8
 
 ---
 
@@ -27,10 +30,10 @@ utn-eventos-sql-repo/
 - **assets/diagrama-eventos.png**: imagen del **diagrama** de lo utilizado por el módulo
   (tablas existentes + tablas nuevas + relaciones). Este gráfico explica la **adaptación**
   sobre la BDD UTN.
-- **sql/01_schema_objects.sql**: incluye **creación de tablas**, **claves foráneas**,
+- **scripts/01_schema_objects.sql**: incluye **creación de tablas**, **claves foráneas**,
   **inserción de roles**, **updates/alter** sobre tablas existentes y un bloque PL/SQL
   **opcional** para inicializar **códigos QR** en inscripciones existentes.
-- **sql/02_triggers.sql**: agrupa **exclusivamente los triggers** provistos por el autor.
+- **scripts/02_triggers.sql**: agrupa **exclusivamente los triggers** provistos por el autor.
 
 ---
 
@@ -77,8 +80,3 @@ El **diagrama** en `assets/diagrama-eventos.png` ilustra **qué se reutiliza** y
 - Los **triggers** sincronizan inscripciones de actividades y asignan/generan códigos QR coherentes
   con el flujo definido en el **Manual de Usuario**.
 
----
-
-## Licencia
-
-Uso institucional UTN. Si requieres otra licencia, agrégala aquí.
